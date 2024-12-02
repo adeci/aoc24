@@ -68,5 +68,6 @@ int main() {
 
     free(left_list);
     free(right_list);
+    free(file_input);
     return 0;
 }

@@ -54,12 +54,14 @@ EOF
     cat <<EOF > "${part_dir}/compile.sh"
 #!/bin/bash
 
-clang -I../../utils -o solution solution.c ../../utils/utils.c
-if [[ \$? -eq 0 ]]; then
-    echo "Compilation success."
-    ./solution
+if [[ $1 == "debug" ]]; then
+    echo "Debug mode enabled."
+    clang -g -O0 -I../../utils -o solution solution.c ../../utils/utils.c
+    echo "Debug compilation success."
 else
-    echo "Compilation fail."
+    clang -I../../utils -o solution solution.c ../../utils/utils.c
+    echo "Compilation success. Running program."
+    ./solution
 fi
 EOF
 
